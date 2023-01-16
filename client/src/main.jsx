@@ -6,6 +6,12 @@ import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import ErrorPage from "./pages/ErrorPage";
+import CreateGroup from './pages/CreateGroup';
+import CreateSingle from './pages/CreateSingle';
+import ViewGroup from './pages/ViewGroup';
+import ViewList from './pages/ViewList';
+import ViewSingle from './pages/ViewSingle';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,7 +26,32 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-    errorElement: <Login />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/CreateGroup",
+    element: <CreateGroup />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/CreateSingle",
+    element: <CreateSingle />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/ViewGroup",
+    element: <ViewGroup />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/ViewList",
+    element: <ViewList />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/ViewSingle",
+    element: <ViewSingle />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
