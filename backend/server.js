@@ -32,11 +32,12 @@ app.get('/api/accounts',(req,res) =>{
   });
 });
 
-app.post('/api/accounts',(req,res) =>{
+app.post('/api/accounts', async (req,res) =>{
   const email = req.body.email;
-  const password = req.body.password;
+  const salt = await bycrypt.genSalt();
+  const password = await bycrypt.hash(req.body.password,salt);
   const sqlInsert = "INSERT INTO accounts (email,password) VALUES (?,?);";
   db.query(sqlInsert,[email,password],(err,result) =>{
     console.log(result);
-  })
-})
+  });
+});
