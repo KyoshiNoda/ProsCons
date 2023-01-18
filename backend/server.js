@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const app = express();
+const bycrypt = require('bcrypt');
 dotenv.config();
 
 app.use(cors());
@@ -30,3 +31,12 @@ app.get('/api/accounts',(req,res) =>{
     res.send(result);
   });
 });
+
+app.post('/api/accounts',(req,res) =>{
+  const email = req.body.email;
+  const password = req.body.password;
+  const sqlInsert = "INSERT INTO accounts (email,password) VALUES (?,?);";
+  db.query(sqlInsert,[email,password],(err,result) =>{
+    console.log(result);
+  })
+})
