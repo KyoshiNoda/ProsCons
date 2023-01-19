@@ -26,11 +26,26 @@ app.get('/', (req,res) =>{
 });
 
 app.get('/api/accounts',(req,res) =>{
-  const sqlSelect = "SELECT * FROM `Pros-Cons`.accounts;"
-  db.query(sqlSelect,(err,result) =>{
+  const select = "SELECT * FROM `Pros-Cons`.accounts;"
+  db.query(select,(err,result) =>{
     res.send(result);
   });
 });
+
+app.get('/api/Pros-Cons', (req,res) =>{
+  const select = "SELECT * FROM `Pros-Cons` .pros-cons";
+  db.query(select,(err,result) =>{
+    res.send(result);
+  });
+}) 
+
+app.post('/api/Pros-Cons',(req,res) =>{
+  const insert = 'INSERT INTO pros-cons (name,id,text,status) VALUES (?,?,?,?)'
+  db.query(insert,[req.body.name,req.body.id,req.body.text,req.body.status], (err,result) =>{
+    console.log(result);
+  });
+});
+
 
 app.post('/api/accounts', async (req,res) =>{
   const email = req.body.email;
