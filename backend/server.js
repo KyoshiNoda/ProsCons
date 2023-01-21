@@ -26,22 +26,26 @@ app.get('/', (req,res) =>{
 });
 
 app.get('/api/accounts',(req,res) =>{
-  const select = "SELECT * FROM `Pros-Cons`.accounts;"
+  const select = "SELECT * FROM `Pros-Cons`.users;"
   db.query(select,(err,result) =>{
     res.send(result);
   });
 });
 
 app.get('/api/Pros-Cons', (req,res) =>{
-  const select = "SELECT * FROM `Pros-Cons` .pros-cons";
+  const select = "SELECT * FROM `Pros-Cons` .pros_cons_list";
   db.query(select,(err,result) =>{
     res.send(result);
   });
 }) 
 
 app.post('/api/Pros-Cons',(req,res) =>{
-  const insert = 'INSERT INTO pros-cons (name,id,text,status) VALUES (?,?,?,?)'
-  db.query(insert,[req.body.name,req.body.id,req.body.text,req.body.status], (err,result) =>{
+  const insert = 'INSERT INTO pros-cons (name,id,text,status) VALUES (?,?,?,?);';
+  const name = req.body.name;
+  const id = req.body.id;
+  const text = req.body.text;
+  const status = req.body.text;
+  db.query(insert,[name,id,text,status], (err,result) =>{
     console.log(result);
   });
 });
@@ -51,7 +55,7 @@ app.post('/api/accounts', async (req,res) =>{
   const email = req.body.email;
   const salt = await bycrypt.genSalt();
   const password = await bycrypt.hash(req.body.password,salt);
-  const sqlInsert = "INSERT INTO accounts (email,password) VALUES (?,?);";
+  const sqlInsert = "INSERT INTO users (email,password) VALUES (?,?);";
   db.query(sqlInsert,[email,password],(err,result) =>{
     console.log(result);
   });
