@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-function ConSingle() {
+function ConSingle(props) {
   const [input, setInput] = useState("");
   const inputHandler = (event) => {
     setInput(event.target.value);
-    console.log(input);
+    props.text(input);
   };
   return (
     <div className="flex flex-col bg-red-500 h-full w-1/2 rounded p-5 gap-y-5">
@@ -13,7 +13,7 @@ function ConSingle() {
       </div>
       <div className="bg-slate-100 h-full w-full rounded"></div>
       <div className="flex justify-center">
-        <input type="text" value={input} onChange={inputHandler} />
+        <input className = 'rounded' type="text" value={input} onChange={inputHandler} />
       </div>
     </div>
   );

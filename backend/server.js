@@ -16,7 +16,8 @@ const db = mysql.createConnection({
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASS,
   database: process.env.MYSQL_DB
-})
+});
+
 app.listen(3001,() =>{
   console.log("listening on port 3001");
 });
@@ -37,7 +38,7 @@ app.get('/api/Pros-Cons', (req,res) =>{
   db.query(select,(err,result) =>{
     res.send(result);
   });
-}) 
+}); 
 
 app.post('/api/Pros-Cons',(req,res) =>{
   const insert = 'INSERT INTO pros-cons (name,id,text,status) VALUES (?,?,?,?);';
