@@ -22,23 +22,47 @@ app.listen(3001,() =>{
   console.log("listening on port 3001");
 });
 
-app.get('/', (req,res) =>{
-  res.send("hello world");
-});
-
 app.get('/api/accounts',(req,res) =>{
   const select = "SELECT * FROM `Pros-Cons`.users;"
   db.query(select,(err,result) =>{
     res.send(result);
   });
 });
+app.post('/api/accounts', async (req,res) =>{
+  const email = req.body.email;
+  const salt = await bycrypt.genSalt();
+  const password = await bycrypt.hash(req.body.password,salt);
+  console.log(email,password);
+  const sqlInsert = "INSERT INTO users (email,password) VALUES (?,?);";
+  db.query(sqlInsert,[email,password],(err,result) =>{
+    console.log(result);
+  });
+});
+
+app.get('/api/list',(req,res) =>{
+  const select = "SELECT * FROM `Pros-Cons` .pros_cons_list"
+  db.query(select,(err,result) =>{
+    result.length === 0 ? res.send("empty list") : res.send(result);
+  });
+});
+
+app.post('/api/list',(req,res) =>{
+  
+});
+
+
+
+
+
+
 
 app.get('/api/Pros-Cons', (req,res) =>{
   const select = "SELECT * FROM `Pros-Cons` .pros_cons_list";
   db.query(select,(err,result) =>{
     res.send(result);
   });
-}); 
+});
+
 
 app.post('/api/Pros-Cons',(req,res) =>{
   const insert = 'INSERT INTO pros-cons (name,id,text,status) VALUES (?,?,?,?);';
@@ -52,12 +76,3 @@ app.post('/api/Pros-Cons',(req,res) =>{
 });
 
 
-app.post('/api/accounts', async (req,res) =>{
-  const email = req.body.email;
-  const salt = await bycrypt.genSalt();
-  const password = await bycrypt.hash(req.body.password,salt);
-  const sqlInsert = "INSERT INTO users (email,password) VALUES (?,?);";
-  db.query(sqlInsert,[email,password],(err,result) =>{
-    console.log(result);
-  });
-});
