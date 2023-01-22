@@ -12,9 +12,8 @@ function ProSingle(props) {
       </div>
       <div className="bg-slate-100 h-full w-full rounded">{input}</div>
       <div className="flex justify-center">
-        <input  className = 'rounded' type="text" value={input} onChange={inputHandler} />
+        <input className='rounded' type="text" value={input} onChange={inputHandler} />
       </div>
-
     </div>
   );
 }
