@@ -45,6 +45,14 @@ app.get('/api/list',(req,res) =>{
     result.length === 0 ? res.send("empty list") : res.send(result);
   });
 });
+app.get('/api/list/:id',(req,res) =>{
+  const id = req.params.id;
+  let select = "SELECT * FROM `Pros-Cons`";
+  select += ` .pros_cons_list WHERE list_id = ${id}`;
+  db.query(select,(err,result) =>{
+    result.length === 0 ? res.send("empty list") : res.send(result);
+  });
+});
 
 app.post('/api/list',(req,res) =>{
   const name = req.body.name;

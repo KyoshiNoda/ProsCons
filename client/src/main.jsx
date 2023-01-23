@@ -49,10 +49,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/ViewSingle",
-    element: <ViewSingle />,
-    errorElement: <ErrorPage />,
-  },
+    path : '/ViewSingle/:id',
+    element : <ViewSingle/>,
+    errorElement : <ErrorPage/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
