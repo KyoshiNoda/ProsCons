@@ -39,6 +39,7 @@ app.post('/api/accounts', async (req,res) =>{
   });
 });
 
+
 app.get('/api/list',(req,res) =>{
   const select = "SELECT * FROM `Pros-Cons` .pros_cons_list"
   db.query(select,(err,result) =>{
@@ -50,7 +51,7 @@ app.get('/api/list/:id',(req,res) =>{
   let select = "SELECT * FROM `Pros-Cons`";
   select += ` .pros_cons_list WHERE list_id = ${id}`;
   db.query(select,(err,result) =>{
-    result.length === 0 ? res.send("empty list") : res.send(result);
+    result.length === 0 ? res.send(`item ${id} doesn't exist`) : res.send(result);
   });
 });
 
