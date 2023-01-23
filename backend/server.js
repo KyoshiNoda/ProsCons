@@ -70,7 +70,8 @@ app.get('/api/pro-cons/pro/:id',(req,res) =>{
   db.query(select,(err,result) =>{
     result.length === 0 ? res.send(`item ${id} doesn't exist`) : res.send(result);
   })
-})
+});
+
 app.get('/api/pro-cons/con/:id',(req,res) =>{
   const id = req.params.id;
   let select = "SELECT * FROM `Pros-Cons`"; 
@@ -78,6 +79,6 @@ app.get('/api/pro-cons/con/:id',(req,res) =>{
   db.query(select,(err,result) =>{
     result.length === 0 ? res.send(`item ${id} doesn't exist`) : res.send(result);
   })
-})
+});
 
 

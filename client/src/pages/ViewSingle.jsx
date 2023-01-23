@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Card from '../components/Card';
 import Axios from 'axios';
 import { useParams } from "react-router-dom";
-import ProsList from '../components/ViewSingle/ProsList';
-import ConsList from '../components/ViewSingle/ConsList';
+import ProsList from '../components/ViewSingle/Pros/ProsList';
+import ConsList from '../components/ViewSingle/Cons/ConsList';
 function ViewSingle(props) {
   const [title, setTitle] = useState('');
   const id = useParams().id;
