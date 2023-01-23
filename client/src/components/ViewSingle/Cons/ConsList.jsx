@@ -8,7 +8,7 @@ function ConsList() {
   const [isEmpty, setIsEmpty] = useState(false);
   Axios.get(`http://localhost:3001/api/pro-cons/con/${id}`)
     .then((res) => {
-      if (res.data.length === 0) {
+      if (typeof res.data === 'string' || res.data instanceof String) {
         setIsEmpty(true);
       }
       setConList(res.data);
