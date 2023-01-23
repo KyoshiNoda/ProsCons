@@ -5,8 +5,12 @@ import { useParams } from "react-router-dom";
 function ConsList() {
   const id = useParams().id;
   const [conList, setConList] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(false);
   Axios.get(`http://localhost:3001/api/pro-cons/con/${id}`)
     .then((res) => {
+      if (res.data.length === 0) {
+        setIsEmpty(true);
+      }
       setConList(res.data);
     })
     .catch((err) => {
@@ -15,9 +19,12 @@ function ConsList() {
   return (
     <ul>
       {
-        conList.map((data) => {
-          return <ConItem key={data.pros_cons_id} text={data.text} />
-        })
+        !isEmpty ?
+          conList.map((data) => {
+            return <ConItem key={data.pros_cons_id} text={data.text} />
+          })
+          :
+          <></>
       }
     </ul>
   )
