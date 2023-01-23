@@ -58,10 +58,6 @@ app.post('/api/list',(req,res) =>{
 
 
 
-
-
-
-
 app.get('/api/Pros-Cons', (req,res) =>{
   const select = "SELECT * FROM `Pros-Cons` .pros_cons_list";
   db.query(select,(err,result) =>{

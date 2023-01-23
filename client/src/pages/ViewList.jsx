@@ -7,12 +7,13 @@ function ViewList() {
   useEffect(() => {
     Axios.get('http://localhost:3001/api/list')
       .then((res) => {
-        console.log(res.data);
+        setViewList(res.data);
+        console.log(viewList);
       })
       .catch((err) => {
         console.log(err);
       })
-  }, [viewList]);
+  }, []);
   return (
     <Card>
       <div className="flex justify-center items-center gap-11 flex-wrap">
@@ -20,6 +21,11 @@ function ViewList() {
         <ViewItem name="Netflix" />
         <ViewItem name="SBU" />
         <ViewItem name="Applied Visions" />
+        {/* {
+          viewList.map((data) => {
+            <ViewItem name={data.name} />
+          })
+        } */}
       </div>
     </Card>
 
