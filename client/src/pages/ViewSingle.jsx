@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Card from '../components/Card';
 import Axios from 'axios';
 import { useParams } from "react-router-dom";
+import ProsList from '../components/ViewSingle/ProsList';
+import ConsList from '../components/ViewSingle/ConsList';
 function ViewSingle(props) {
   const [title, setTitle] = useState('');
   const id = useParams().id;
@@ -23,13 +25,7 @@ function ViewSingle(props) {
               <h1 className="text-4xl text-white items-start">Pros</h1>
             </div>
             <div className="bg-slate-100 h-full w-full rounded flex justify-center">
-              <ul>
-                <li>test#1</li>
-                <li>test#2</li>
-                <li>test#3</li>
-                <li>test#4</li>
-                <li>test#5</li>
-              </ul>
+              <ProsList />
             </div>
           </div>
 
@@ -38,13 +34,7 @@ function ViewSingle(props) {
               <h1 className="text-4xl text-white items-start">Cons</h1>
             </div>
             <div className="bg-slate-100 h-full w-full rounded flex justify-center">
-              <ul>
-                <li>test#1</li>
-                <li>test#2</li>
-                <li>test#3</li>
-                <li>test#4</li>
-                <li>test#5</li>
-              </ul>
+              <ConsList />
             </div>
           </div>
         </div>

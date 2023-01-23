@@ -39,7 +39,6 @@ app.post('/api/accounts', async (req,res) =>{
   });
 });
 
-
 app.get('/api/list',(req,res) =>{
   const select = "SELECT * FROM `Pros-Cons` .pros_cons_list"
   db.query(select,(err,result) =>{
@@ -64,26 +63,21 @@ app.post('/api/list',(req,res) =>{
   });
 });
 
-
-
-
-app.get('/api/Pros-Cons', (req,res) =>{
-  const select = "SELECT * FROM `Pros-Cons` .pros_cons_list";
+app.get('/api/pro-cons/pro/:id',(req,res) =>{
+  const id = req.params.id;
+  let select = "SELECT * FROM `Pros-Cons`"; 
+  select += ` .pros_cons WHERE list_id = ${id} && status = 'pro';`
   db.query(select,(err,result) =>{
-    res.send(result);
-  });
-});
-
-
-app.post('/api/Pros-Cons',(req,res) =>{
-  const insert = 'INSERT INTO pros-cons (name,id,text,status) VALUES (?,?,?,?);';
-  const name = req.body.name;
-  const id = req.body.id;
-  const text = req.body.text;
-  const status = req.body.text;
-  db.query(insert,[name,id,text,status], (err,result) =>{
-    console.log(result);
-  });
-});
+    result.length === 0 ? res.send(`item ${id} doesn't exist`) : res.send(result);
+  })
+})
+app.get('/api/pro-cons/con/:id',(req,res) =>{
+  const id = req.params.id;
+  let select = "SELECT * FROM `Pros-Cons`"; 
+  select += ` .pros_cons WHERE list_id = ${id} && status = 'con';`
+  db.query(select,(err,result) =>{
+    result.length === 0 ? res.send(`item ${id} doesn't exist`) : res.send(result);
+  })
+})
 
 
