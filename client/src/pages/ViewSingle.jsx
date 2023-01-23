@@ -1,16 +1,17 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Card from '../components/Card';
 import Axios from 'axios';
+import { useParams } from "react-router-dom";
 function ViewSingle(props) {
-  const [title,setTitle] = useState('');
-  let id = window.location.pathname.slice(-1);
+  const [title, setTitle] = useState('');
+  const id = useParams().id;
   Axios.get(`http://localhost:3001/api/list/${id}`)
-  .then((res) =>{
-    setTitle(res.data[0].name)
-  })
-  .catch((err) =>{
-    console.log(err);
-  })
+    .then((res) => {
+      setTitle(res.data[0].name);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 
   return (
     <Card>

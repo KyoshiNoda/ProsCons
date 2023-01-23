@@ -16,7 +16,7 @@ function ViewList() {
       <div className="flex justify-center items-center gap-11 flex-wrap">
         {
           viewList.map((data) => {
-            return <ViewItem name={data.name} list_id={data.list_id} />
+            return <ViewItem key={data.list_id} name={data.name} list_id={data.list_id} />
           })
         }
       </div>
