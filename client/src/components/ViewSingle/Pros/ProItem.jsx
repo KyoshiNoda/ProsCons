@@ -1,8 +1,8 @@
 import React from 'react'
 
-function ProItem() {
+function ProItem(props) {
   return (
-    <div>ProItem</div>
+    <li>- {props.text}</li>
   )
 }
 
