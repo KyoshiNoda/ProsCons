@@ -32,7 +32,6 @@ app.post('/api/accounts', async (req,res) =>{
   const email = req.body.email;
   const salt = await bycrypt.genSalt();
   const password = await bycrypt.hash(req.body.password,salt);
-  console.log(email,password);
   const sqlInsert = "INSERT INTO users (email,password) VALUES (?,?);";
   db.query(sqlInsert,[email,password],(err,result) =>{
     console.log(result);
