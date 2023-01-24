@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect,useRef } from 'react'
 import Card from '../components/Card';
 import Axios from 'axios';
 import { useParams } from "react-router-dom";
@@ -10,6 +10,10 @@ function ViewSingle(props) {
   const [newTitle,setNewTitle ] = useState();
   const [isFocused, setIsFocused] = useState(false);
   const id = useParams().id;
+
+  const inputRef = useRef(null);
+
+
   Axios.get(`http://localhost:3001/api/list/${id}`)
     .then((res) => {
       setTitle(res.data[0].name); // this is causing a re render every time you try to change the value
@@ -23,6 +27,7 @@ function ViewSingle(props) {
   }
   const focusHandler = () => {
     setIsFocused(preMode => !preMode);
+    inputRef.current.classList.add('hidden');
   }
 
 
@@ -31,7 +36,7 @@ function ViewSingle(props) {
     <Card>
       <div className="flex flex-col h-1/2 w-1/2 bg-slate-400 rounded items-center gap-y-5">
         <div className='flex justify-center gap-4 items-center space-y-3'>
-          
+        <h1 className="text-4xl text-white " ref = {inputRef}>{title}</h1>
           {
             isFocused ?
               <input className='rounded'
