@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Card from '../components/Card';
 import Axios from 'axios';
 import { useParams } from "react-router-dom";
@@ -7,36 +7,33 @@ import ConsList from '../components/ViewSingle/Cons/ConsList';
 import EditIcon from '../components/Icons/EditIcon';
 function ViewSingle(props) {
   const [title, setTitle] = useState('');
-  const [newTitle,setNewTitle ] = useState();
   const [isFocused, setIsFocused] = useState(false);
   const id = useParams().id;
 
   const inputRef = useRef(null);
 
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/api/list/${id}`)
+      .then((res) => {
+        setTitle(res.data[0].name);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [])
 
-  Axios.get(`http://localhost:3001/api/list/${id}`)
-    .then((res) => {
-      setTitle(res.data[0].name); // this is causing a re render every time you try to change the value
-    })
-    .catch((err) => {
-      console.log(err);
-    })
 
   const titleHandler = (event) => {
-    setNewTitle(event.target.value);
+    setTitle(event.target.value);
   }
   const focusHandler = () => {
     setIsFocused(preMode => !preMode);
-    inputRef.current.classList.add('hidden');
   }
-
-
 
   return (
     <Card>
       <div className="flex flex-col h-1/2 w-1/2 bg-slate-400 rounded items-center gap-y-5">
         <div className='flex justify-center gap-4 items-center space-y-3'>
-        <h1 className="text-4xl text-white " ref = {inputRef}>{title}</h1>
           {
             isFocused ?
               <input className='rounded'
@@ -46,7 +43,7 @@ function ViewSingle(props) {
                 onChange={titleHandler}
               />
               :
-              <h1 className="text-4xl text-white ">{newTitle}</h1>
+              <h1 className="text-4xl text-white ">{title}</h1>
           }
 
           <EditIcon clicked={focusHandler} />
