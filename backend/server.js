@@ -68,7 +68,7 @@ app.put('/api/list/:id',(req,res) =>{
   update += " (`list_id` = ";
   update += `'${req.params.id}');`;
   db.query(update,(err,result) =>{
-    console.log(result);
+   result.length === 0 ? res.send(`error on updating ${id}`) : res.send(result);
   })
 });
 

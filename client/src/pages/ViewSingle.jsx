@@ -1,79 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React from 'react'
 import Card from '../components/Card';
-import Axios from 'axios';
-import { useParams } from "react-router-dom";
-import ProsList from '../components/ViewSingle/Pros/ProsList';
-import ConsList from '../components/ViewSingle/Cons/ConsList';
-import EditIcon from '../components/Icons/EditIcon';
-function ViewSingle(props) {
-  const [title, setTitle] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
-  const id = useParams().id;
-
-  useEffect(() => {
-    Axios.get(`http://localhost:3001/api/list/${id}`)
-      .then((res) => {
-        setTitle(res.data[0].name);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, [])
-
-
-  const titleHandler = (event) => {
-    setTitle(event.target.value);
-  }
-  const blurHandler = () => {
-    setIsFocused(preMode => !preMode);
-    Axios.put(`http://localhost:3001/api/list/${id}`, { title: title })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
+import ConBox from '../components/ViewSingle/Cons/ConBox';
+import ProBox from '../components/ViewSingle/Pros/ProBox';
+import ViewTitleContainer from '../components/ViewSingle/ViewTitleContainer';
+function ViewSingle() {
   return (
     <Card>
       <div className="flex flex-col h-1/2 w-1/2 bg-slate-400 rounded items-center gap-y-5">
-        <div className='flex justify-center gap-4 items-center space-y-3'>
-          {
-            isFocused ?
-              <input className='rounded'
-                type='text'
-                placeholder={title}
-                onBlur={blurHandler}
-                onChange={titleHandler}
-              />
-              :
-              <h1 className="text-4xl text-white ">{title}</h1>
-          }
-          <EditIcon clicked={() => {
-            setIsFocused(preMode => !preMode);
-          }}
-          />
-        </div>
-
+        <ViewTitleContainer />
         <div className="flex h-3/4 w-3/4">
-          <div className='flex flex-col bg-green-500 h-full w-1/2 rounded p-5 gap-y-5'>
-            <div className="text-center">
-              <h1 className="text-4xl text-white items-start">Pros</h1>
-            </div>
-            <div className="bg-slate-100 h-full w-full rounded flex justify-center">
-              <ProsList />
-            </div>
-          </div>
-
-          <div className='flex flex-col bg-red-500 h-full w-1/2 rounded p-5 gap-y-5'>
-            <div className="text-center">
-              <h1 className="text-4xl text-white items-start">Cons</h1>
-            </div>
-            <div className="bg-slate-100 h-full w-full rounded flex justify-center">
-              <ConsList />
-            </div>
-          </div>
+          <ProBox />
+          <ConBox />
         </div>
       </div>
     </Card>
