@@ -62,6 +62,16 @@ app.post('/api/list',(req,res) =>{
   });
 });
 
+app.put('/api/list/:id',(req,res) =>{
+  let update = "UPDATE `Pros-Cons`.`pros_cons_list` SET `name` = ";
+  update += `'${req.body.title}' WHERE`;
+  update += " (`list_id` = ";
+  update += `'${req.params.id}');`;
+  db.query(update,(err,result) =>{
+    console.log(result);
+  })
+});
+
 app.get('/api/pro-cons/pro/:id',(req,res) =>{
   const id = req.params.id;
   let select = "SELECT * FROM `Pros-Cons`"; 

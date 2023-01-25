@@ -10,8 +10,6 @@ function ViewSingle(props) {
   const [isFocused, setIsFocused] = useState(false);
   const id = useParams().id;
 
-  const inputRef = useRef(null);
-
   useEffect(() => {
     Axios.get(`http://localhost:3001/api/list/${id}`)
       .then((res) => {
@@ -26,8 +24,15 @@ function ViewSingle(props) {
   const titleHandler = (event) => {
     setTitle(event.target.value);
   }
-  const focusHandler = () => {
+  const blurHandler = () => {
     setIsFocused(preMode => !preMode);
+    Axios.put(`http://localhost:3001/api/list/${id}`, { title: title })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   return (
@@ -39,14 +44,16 @@ function ViewSingle(props) {
               <input className='rounded'
                 type='text'
                 placeholder={title}
-                onBlur={focusHandler}
+                onBlur={blurHandler}
                 onChange={titleHandler}
               />
               :
               <h1 className="text-4xl text-white ">{title}</h1>
           }
-
-          <EditIcon clicked={focusHandler} />
+          <EditIcon clicked={() => {
+            setIsFocused(preMode => !preMode);
+          }}
+          />
         </div>
 
         <div className="flex h-3/4 w-3/4">
