@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import ConItem from './ConItem';
 import { useParams } from "react-router-dom";
-function ConsList() {
+function ConsList(props) {
   const id = useParams().id;
   const [conList, setConList] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Axios from 'axios';
 import { useParams } from 'react-router';
 import ProItem from './ProItem';
-function ProsList() {
+function ProsList(props) {
   const id = useParams().id;
   const [proList, setProList] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
