@@ -4,13 +4,15 @@ import ViewItem from '../components/ViewList/ViewItem';
 import Card from '../components/Card';
 function ViewList() {
   const [viewList, setViewList] = useState([]);
-  Axios.get('http://localhost:3001/api/list')
-    .then((res) => {
-      setViewList(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+  useEffect(() => {
+    Axios.get('http://localhost:3001/api/list')
+      .then((res) => {
+        setViewList(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [])
   return (
     <Card>
       <div className="flex justify-center items-center gap-11 flex-wrap">

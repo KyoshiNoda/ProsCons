@@ -7,7 +7,7 @@ function RenderProList() {
   const [proList, setProList] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
   useEffect(() => {
-    Axios.get(`http://localhost:3001/api/pro-cons/pro/${id}`)
+    Axios.get(`http://localhost:3001/api/pros-cons/pro/${id}`)
       .then((res) => {
         if (typeof res.data === 'string' || res.data instanceof String) {
           setIsEmpty(true);

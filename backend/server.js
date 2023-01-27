@@ -81,6 +81,15 @@ app.get('/api/pros-cons/pro/:id',(req,res) =>{
   })
 });
 
+app.post('/api/pros-cons/pro',(req,res) =>{
+  const list_id = req.body.list_id;
+  const status = req.body.status;
+  const text = req.body.text;
+  const insert = "INSERT INTO pros_cons (list_id,status,text,user_id) VALUES (?,?,?,?)";
+  db.query(insert,[list_id,status,text,2],(err,result) =>{
+    console.log(result);
+  })
+});
 app.put('/api/pros-cons/pro/:id',(req,res) =>{
   let update ="UPDATE `Pros-Cons`.`pros_cons` SET `text` = ";
   update += `'${req.body.text}' WHERE (`
@@ -97,6 +106,15 @@ app.get('/api/pros-cons/con/:id',(req,res) =>{
   select += ` .pros_cons WHERE list_id = ${id} && status = 'con';`
   db.query(select,(err,result) =>{
     result.length === 0 ? res.send(`item ${id} doesn't exist`) : res.send(result);
+  })
+});
+app.post('/api/pros-cons/con',(req,res) =>{
+  const list_id = req.body.list_id;
+  const status = req.body.status;
+  const text = req.body.text;
+  const insert = "INSERT INTO pros_cons (list_id,status,text,user_id) VALUES (?,?,?,?)";
+  db.query(insert,[list_id,status,text,2],(err,result) =>{
+    console.log(result);
   })
 });
 
