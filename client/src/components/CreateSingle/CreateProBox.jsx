@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import ProsList from './ProsList'
-import EditIcon from '../../Icons/EditIcon'
+import React,{useState} from 'react'
+import ProsList from '../ViewSingle/Pros/ProsList';
+import EditIcon from '../Icons/EditIcon';
 import Axios from 'axios';
 import { useParams } from 'react-router';
-function ProBox() {
+function CreateProBox() {
   const id = useParams().id;
   const [isEdited, setIsEdited] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
@@ -32,12 +32,18 @@ function ProBox() {
       .catch((err) => {
         console.log(err);
       })
+      Axios.get(`http://localhost:3001/api/pros-cons/pro/${id}`)
+      .then((res) =>{
+        console.log(res);
+      })
+      .catch((err) =>{
+        console.log(err);
+      })
   }
   return (
     <div className='flex flex-col bg-green-500 h-full w-1/2 rounded p-5 gap-y-5'>
       <div className="flex justify-center gap-4 item-center">
         <h1 className="text-4xl text-white items-start">Pros</h1>
-        <EditIcon clicked={editHandler} />
       </div>
       <div className="bg-slate-100 h-full w-full rounded flex justify-center">
         <ProsList edited={isEdited} added={isAdded} />
@@ -64,4 +70,4 @@ function ProBox() {
   )
 }
 
-export default ProBox
+export default CreateProBox

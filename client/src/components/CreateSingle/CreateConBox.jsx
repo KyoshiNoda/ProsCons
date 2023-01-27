@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import ProsList from './ProsList'
-import EditIcon from '../../Icons/EditIcon'
-import Axios from 'axios';
+import ConsList from '../ViewSingle/Cons/ConsList';
 import { useParams } from 'react-router';
-function ProBox() {
+import Axios from 'axios';
+function CreateConBox() {
   const id = useParams().id;
   const [isEdited, setIsEdited] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
@@ -18,29 +17,35 @@ function ProBox() {
     setText(event.target.value);
   }
   const blurHandler = () => {
-    let proItem = {
+    let conItem = {
       list_id: id,
-      status: 'pro',
+      status: 'con',
       text: text,
-      user_id: 2
+      user_id: 2 //test for now
     }
     setIsAdded(preMode => !preMode);
-    Axios.post("http://localhost:3001/api/pros-cons/pro/", proItem)
+    Axios.post("http://localhost:3001/api/pros-cons/con/", conItem)
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
       })
+    Axios.get(`http://localhost:3001/api/pros-cons/con/${id}`)
+    .then((res) =>{
+      console.log(res);
+    })
+    .catch((err) =>{
+      console.log(err);
+    })
   }
   return (
-    <div className='flex flex-col bg-green-500 h-full w-1/2 rounded p-5 gap-y-5'>
-      <div className="flex justify-center gap-4 item-center">
-        <h1 className="text-4xl text-white items-start">Pros</h1>
-        <EditIcon clicked={editHandler} />
+    <div className='flex flex-col bg-red-500 h-full w-1/2 rounded p-5 gap-y-5'>
+      <div className="flex justify-center items-center gap-4">
+        <h1 className="text-4xl text-white items-start">Cons</h1>
       </div>
       <div className="bg-slate-100 h-full w-full rounded flex justify-center">
-        <ProsList edited={isEdited} added={isAdded} />
+        <ConsList edited={isEdited} added={isAdded} />
       </div>
       {
         isAdded ?
@@ -60,8 +65,9 @@ function ProBox() {
             Add
           </button>
       }
+
     </div>
   )
 }
 
-export default ProBox
+export default CreateConBox

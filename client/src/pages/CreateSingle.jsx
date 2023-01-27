@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ProSingle from "../components/CreateSingle/ProSingle";
-import ConSingle from "../components/CreateSingle/ConSingle";
 import Card from '../components/Card';
 import CreateTitleContainer from "../components/CreateSingle/CreateTitleContainer";
+import CreateProBox from "../components/CreateSingle/CreateProBox";
+import CreateConBox from "../components/CreateSingle/CreateConBox";
 const textHandler = () => {
   console.log("hello");
 }
@@ -14,8 +14,8 @@ function CreateSingle() {
               <CreateTitleContainer/>
           </div>
           <div className="flex h-3/4 w-3/4">
-            <ProSingle text={textHandler} />
-            <ConSingle text={textHandler} />
+            <CreateProBox/>
+            <CreateConBox />
           </div>
           <button
             type="submit"
