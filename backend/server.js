@@ -81,6 +81,17 @@ app.get('/api/pro-cons/pro/:id',(req,res) =>{
   })
 });
 
+app.put('/api/pro-cons/pro/:id',(req,res) =>{
+  let test = "UPDATE `Pros-Cons`.`pros_cons` SET `text` = 'mid education offered' WHERE (`pros_cons_id` = '2');";
+  let update ="UPDATE `Pros-Cons`.`pros_cons` SET `text` = ";
+  update += `'${req.body.text}' WHERE (`
+  update += "`pros_cons_id` = ";
+  update += `'${req.params.id}')`;
+  db.query(update,(err,result) =>{
+    console.log(result);
+  })
+})
+
 app.get('/api/pro-cons/con/:id',(req,res) =>{
   const id = req.params.id;
   let select = "SELECT * FROM `Pros-Cons`"; 
