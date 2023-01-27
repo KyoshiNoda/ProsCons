@@ -2,35 +2,17 @@ import React, { useState } from "react";
 import ProSingle from "../components/CreateSingle/ProSingle";
 import ConSingle from "../components/CreateSingle/ConSingle";
 import Card from '../components/Card';
-import EditIcon from "../components/Icons/EditIcon";
-const formHandler = (event) => {
-  event.preventDefault();
-  console.log('submitted');
-};
+import CreateTitleContainer from "../components/CreateSingle/CreateTitleContainer";
 const textHandler = () => {
   console.log("hello");
 }
-
-const titleHandler = (event) => {
-  setTitle(event.target.value);
-}
-const clickHandler = () => {
-  setClickedTitle(true);
-}
 function CreateSingle() {
-  const [title, setTitle] = useState('Untitled');
-  const [clickedTitle, setClickedTitle] = useState(false);
   return (
-    <form onSubmit={formHandler}>
       <Card>
         <div className="flex flex-col h-5/6 w-5/6 bg-slate-400 rounded items-center gap-y-5">
           <div className="flex items-center gap-4 text-sm">
-            <h1 className="text-3xl lg:text-5xl text-white font-bold">
-              {!clickedTitle ? title : <input onChange={titleHandler} type='text' />}
-            </h1>
-            <EditIcon clicked={clickHandler} />
+              <CreateTitleContainer/>
           </div>
-
           <div className="flex h-3/4 w-3/4">
             <ProSingle text={textHandler} />
             <ConSingle text={textHandler} />
@@ -43,7 +25,6 @@ function CreateSingle() {
           </button>
         </div>
       </Card>
-    </form>
   );
 }
 
