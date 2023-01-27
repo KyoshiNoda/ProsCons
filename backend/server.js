@@ -82,7 +82,6 @@ app.get('/api/pro-cons/pro/:id',(req,res) =>{
 });
 
 app.put('/api/pro-cons/pro/:id',(req,res) =>{
-  let test = "UPDATE `Pros-Cons`.`pros_cons` SET `text` = 'mid education offered' WHERE (`pros_cons_id` = '2');";
   let update ="UPDATE `Pros-Cons`.`pros_cons` SET `text` = ";
   update += `'${req.body.text}' WHERE (`
   update += "`pros_cons_id` = ";
@@ -90,7 +89,7 @@ app.put('/api/pro-cons/pro/:id',(req,res) =>{
   db.query(update,(err,result) =>{
     console.log(result);
   })
-})
+});
 
 app.get('/api/pro-cons/con/:id',(req,res) =>{
   const id = req.params.id;
@@ -98,6 +97,16 @@ app.get('/api/pro-cons/con/:id',(req,res) =>{
   select += ` .pros_cons WHERE list_id = ${id} && status = 'con';`
   db.query(select,(err,result) =>{
     result.length === 0 ? res.send(`item ${id} doesn't exist`) : res.send(result);
+  })
+});
+
+app.put('/api/pro-cons/con/:id',(req,res) =>{
+  let update ="UPDATE `Pros-Cons`.`pros_cons` SET `text` = ";
+  update += `'${req.body.text}' WHERE (`
+  update += "`pros_cons_id` = ";
+  update += `'${req.params.id}')`;
+  db.query(update,(err,result) =>{
+    console.log(result);
   })
 });
 
