@@ -6,7 +6,7 @@ function EditConItem(props) {
     setText(event.target.value);
   }
   const blurHandler = () => {
-    Axios.put(`http://localhost:3001/api/pro-cons/con/${props.id}`, { text: text })
+    Axios.put(`http://localhost:3001/api/pros-cons/con/${props.id}`, { text: text })
       .then((res) => {
         console.log(res);
       })

@@ -72,7 +72,7 @@ app.put('/api/list/:id',(req,res) =>{
   })
 });
 
-app.get('/api/pro-cons/pro/:id',(req,res) =>{
+app.get('/api/pros-cons/pro/:id',(req,res) =>{
   const id = req.params.id;
   let select = "SELECT * FROM `Pros-Cons`"; 
   select += ` .pros_cons WHERE list_id = ${id} && status = 'pro';`
@@ -81,7 +81,7 @@ app.get('/api/pro-cons/pro/:id',(req,res) =>{
   })
 });
 
-app.put('/api/pro-cons/pro/:id',(req,res) =>{
+app.put('/api/pros-cons/pro/:id',(req,res) =>{
   let update ="UPDATE `Pros-Cons`.`pros_cons` SET `text` = ";
   update += `'${req.body.text}' WHERE (`
   update += "`pros_cons_id` = ";
@@ -91,7 +91,7 @@ app.put('/api/pro-cons/pro/:id',(req,res) =>{
   })
 });
 
-app.get('/api/pro-cons/con/:id',(req,res) =>{
+app.get('/api/pros-cons/con/:id',(req,res) =>{
   const id = req.params.id;
   let select = "SELECT * FROM `Pros-Cons`"; 
   select += ` .pros_cons WHERE list_id = ${id} && status = 'con';`
@@ -100,7 +100,7 @@ app.get('/api/pro-cons/con/:id',(req,res) =>{
   })
 });
 
-app.put('/api/pro-cons/con/:id',(req,res) =>{
+app.put('/api/pros-cons/con/:id',(req,res) =>{
   let update ="UPDATE `Pros-Cons`.`pros_cons` SET `text` = ";
   update += `'${req.body.text}' WHERE (`
   update += "`pros_cons_id` = ";

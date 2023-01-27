@@ -7,7 +7,7 @@ function EditConList() {
   const [conList, setConList] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
   useEffect(() => {
-    Axios.get(`http://localhost:3001/api/pro-cons/con/${id}`)
+    Axios.get(`http://localhost:3001/api/pros-cons/con/${id}`)
       .then((res) => {
         if (typeof res.data === 'string' || res.data instanceof String) {
           setIsEmpty(true);
@@ -21,9 +21,12 @@ function EditConList() {
   return (
     <ul>
       {
-        conList.map((data) => {
-          return <EditConItem key={data.pros_cons_id} text={data.text} id={data.pros_cons_id} />
-        })
+        !isEmpty ?
+          conList.map((data) => {
+            return <EditConItem key={data.pros_cons_id} text={data.text} id={data.pros_cons_id} />
+          })
+          :
+          <></>
       }
     </ul>
   )

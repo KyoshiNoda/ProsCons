@@ -6,7 +6,6 @@ function ViewTitleContainer() {
   const [title, setTitle] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const id = useParams().id;
-
   useEffect(() => {
     Axios.get(`http://localhost:3001/api/list/${id}`)
       .then((res) => {
@@ -16,8 +15,6 @@ function ViewTitleContainer() {
         console.log(err);
       })
   }, [])
-
-
   const titleHandler = (event) => {
     setTitle(event.target.value);
   }

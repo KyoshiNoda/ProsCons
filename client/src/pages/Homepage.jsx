@@ -1,6 +1,5 @@
 import React from "react";
 import CreateModal from "../components/CreateModal";
-import InfoModal from "../components/InfoModal";
 import ViewModal from "../components/ViewModal";
 function Homepage() {
   return (

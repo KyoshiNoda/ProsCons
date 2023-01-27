@@ -7,7 +7,7 @@ function RenderConList() {
   const [conList, setConList] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
   useEffect(() => {
-    Axios.get(`http://localhost:3001/api/pro-cons/con/${id}`)
+    Axios.get(`http://localhost:3001/api/pros-cons/con/${id}`)
       .then((res) => {
         if (typeof res.data === 'string' || res.data instanceof String) {
           setIsEmpty(true);

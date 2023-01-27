@@ -1,13 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-
 const InfoModal = (props) => {
   let [isOpen, setIsOpen] = useState(true);
-
   function closeModal() {
     setIsOpen(false);
   }
-
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
