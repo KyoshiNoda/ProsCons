@@ -58,7 +58,7 @@ app.post('/api/list',(req,res) =>{
   const user_id = 2;
   const insert = "INSERT INTO pros_cons_list (name,user_id) VALUES (?,?);";
   db.query(insert,[name,user_id],(err,result) =>{
-    console.log(result);
+    res.send(result);
   });
 });
 

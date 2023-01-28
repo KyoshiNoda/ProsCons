@@ -3,19 +3,20 @@ import Card from '../components/Card';
 import CreateTitleContainer from "../components/CreateSingle/CreateTitleContainer";
 import CreateProBox from "../components/CreateSingle/CreateProBox";
 import CreateConBox from "../components/CreateSingle/CreateConBox";
-const textHandler = () => {
-  console.log("hello");
-}
 function CreateSingle() {
+  const [insertID,setInsertID] = useState();
+  const getInsertID = (id) =>{
+    setInsertID(id);
+  }
   return (
       <Card>
         <div className="flex flex-col h-5/6 w-5/6 bg-slate-400 rounded items-center gap-y-5">
           <div className="flex items-center gap-4 text-sm">
-              <CreateTitleContainer/>
+              <CreateTitleContainer insertID = {getInsertID}/>
           </div>
           <div className="flex h-3/4 w-3/4">
-            <CreateProBox/>
-            <CreateConBox />
+            <CreateProBox insertID = {insertID}/>
+            {/* <CreateConBox /> */}
           </div>
           <button
             type="submit"

@@ -1,10 +1,7 @@
 import React,{useState} from 'react'
-import ProsList from '../ViewSingle/Pros/ProsList';
-import EditIcon from '../Icons/EditIcon';
 import Axios from 'axios';
-import { useParams } from 'react-router';
-function CreateProBox() {
-  const id = useParams().id;
+import CreateProList from './CreateProList';
+function CreateProBox(props) {
   const [isEdited, setIsEdited] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
   const [text, setText] = useState();
@@ -19,7 +16,7 @@ function CreateProBox() {
   }
   const blurHandler = () => {
     let proItem = {
-      list_id: id,
+      list_id: props.insertID,
       status: 'pro',
       text: text,
       user_id: 2
@@ -32,7 +29,7 @@ function CreateProBox() {
       .catch((err) => {
         console.log(err);
       })
-      Axios.get(`http://localhost:3001/api/pros-cons/pro/${id}`)
+      Axios.get(`http://localhost:3001/api/pros-cons/pro/${props.insertID}`)
       .then((res) =>{
         console.log(res);
       })
@@ -46,7 +43,7 @@ function CreateProBox() {
         <h1 className="text-4xl text-white items-start">Pros</h1>
       </div>
       <div className="bg-slate-100 h-full w-full rounded flex justify-center">
-        <ProsList edited={isEdited} added={isAdded} />
+        <CreateProList insertID = {props.insertID}/>
       </div>
       {
         isAdded ?

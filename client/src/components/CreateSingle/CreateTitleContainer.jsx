@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router';
+import React, { useState } from 'react'
 import Axios from 'axios';
 import EditIcon from '../Icons/EditIcon';
-function CreateTitleContainer() {
+function CreateTitleContainer(props) {
   const [name, setName] = useState('Untitled');
   const [isFocused, setIsFocused] = useState(false);
-  const id = useParams().id;
   const nameHandler = (event) => {
     setName(event.target.value);
   }
@@ -14,6 +12,7 @@ function CreateTitleContainer() {
     Axios.post(`http://localhost:3001/api/list/`, { name: name })
       .then((res) => {
         console.log(res);
+        props.insertID(res.data.insertId);
       })
       .catch((err) => {
         console.log(err);

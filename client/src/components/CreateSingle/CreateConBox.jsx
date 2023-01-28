@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ConsList from '../ViewSingle/Cons/ConsList';
 import { useParams } from 'react-router';
 import Axios from 'axios';
-function CreateConBox() {
+function CreateConBox(props) {
   const id = useParams().id;
   const [isEdited, setIsEdited] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
