@@ -5,9 +5,6 @@ function CreateProBox(props) {
   const [isCreated, setIsCreated] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
   const [text, setText] = useState();
-  const editHandler = () => {
-    setIsEdited((prevEdit => !prevEdit));
-  }
   const addHandler = () => {
     setIsAdded(true);
   }

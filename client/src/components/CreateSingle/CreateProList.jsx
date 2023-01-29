@@ -4,7 +4,6 @@ import ProItem from '../ViewSingle/Pros/ProItem';
 function CreateProList(props) {
 
   const [proList, setProList] = useState([]);
-  const [isEmpty, setIsEmpty] = useState(false);
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/api/pros-cons/pro/${props.insertID}`)
