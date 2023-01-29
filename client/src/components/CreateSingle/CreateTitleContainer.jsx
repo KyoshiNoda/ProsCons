@@ -11,7 +11,6 @@ function CreateTitleContainer(props) {
     setIsFocused(preMode => !preMode);
     Axios.post(`http://localhost:3001/api/list/`, { name: name })
       .then((res) => {
-        console.log(res);
         props.insertID(res.data.insertId);
       })
       .catch((err) => {

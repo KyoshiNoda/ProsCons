@@ -1,8 +1,8 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Axios from 'axios';
 import CreateProList from './CreateProList';
 function CreateProBox(props) {
-  const [isEdited, setIsEdited] = useState(false);
+  const [isCreated, setIsCreated] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
   const [text, setText] = useState();
   const editHandler = () => {
@@ -29,13 +29,7 @@ function CreateProBox(props) {
       .catch((err) => {
         console.log(err);
       })
-      Axios.get(`http://localhost:3001/api/pros-cons/pro/${props.insertID}`)
-      .then((res) =>{
-        console.log(res);
-      })
-      .catch((err) =>{
-        console.log(err);
-      })
+    setIsCreated(true);
   }
   return (
     <div className='flex flex-col bg-green-500 h-full w-1/2 rounded p-5 gap-y-5'>
@@ -43,7 +37,7 @@ function CreateProBox(props) {
         <h1 className="text-4xl text-white items-start">Pros</h1>
       </div>
       <div className="bg-slate-100 h-full w-full rounded flex justify-center">
-        <CreateProList insertID = {props.insertID}/>
+        {isCreated && <CreateProList insertID={props.insertID} />}
       </div>
       {
         isAdded ?
