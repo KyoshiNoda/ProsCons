@@ -6,6 +6,9 @@ function EditProItem(props) {
     setText(event.target.value);
   }
   const blurHandler = () => {
+    if (text === undefined) {
+      return;
+    }
     Axios.put(`http://localhost:3001/api/pros-cons/pro/${props.id}`, { text: text })
       .then((res) => {
         console.log(res);

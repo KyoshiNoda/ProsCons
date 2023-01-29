@@ -6,6 +6,10 @@ function CreateProBox(props) {
   const [isAdded, setIsAdded] = useState(false);
   const [text, setText] = useState();
   const addHandler = () => {
+    if (props.insertID === undefined) {
+      console.log('select title first');
+      return;
+    }
     setIsAdded(true);
   }
   const textHandler = (event) => {

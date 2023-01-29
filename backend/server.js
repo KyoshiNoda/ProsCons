@@ -99,7 +99,14 @@ app.put('/api/pros-cons/pro/:id',(req,res) =>{
     console.log(result);
   })
 });
-
+app.delete('/api/pros-cons/pro/:id',(req,res) =>{
+  const id = req.params.id;
+  let remove = "DELETE FROM `Pros-Cons`.`pros_cons` WHERE (`pros_cons_id` = ";
+  remove += `'${id}');`;
+  db.query(remove,(err,result) =>{
+    res.send(result);
+  })
+});
 app.get('/api/pros-cons/con/:id',(req,res) =>{
   const id = req.params.id;
   let select = "SELECT * FROM `Pros-Cons`"; 
@@ -128,4 +135,12 @@ app.put('/api/pros-cons/con/:id',(req,res) =>{
   })
 });
 
+app.delete('/api/pros-cons/con/:id',(req,res) =>{
+  const id = req.params.id;
+  let remove = "DELETE FROM `Pros-Cons`.`pros_cons` WHERE (`pros_cons_id` = ";
+  remove += `'${id}');`;
+  db.query(remove,(err,result) =>{
+    res.send(result);
+  })
+});
 

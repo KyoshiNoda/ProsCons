@@ -18,12 +18,11 @@ function CreateProList(props) {
       })
 
   }, [proList])
-
   return (
     <ul>
       {
         proList.map((data) => {
-          return <ProItem key={data.pros_cons_id} text={data.text} />
+          return <ProItem key={data.pros_cons_id} text={data.text} id={data.pros_cons_id} />
         })
 
       }
