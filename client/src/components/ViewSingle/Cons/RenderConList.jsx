@@ -24,7 +24,7 @@ function RenderConList() {
       {
         !isEmpty ?
           conList.map((data) => {
-            return <ConItem key={data.pros_cons_id} text={data.text} />
+            return <ConItem key={data.pros_cons_id} text={data.text} id={data.pros_cons_id} />
           })
           :
           <></>

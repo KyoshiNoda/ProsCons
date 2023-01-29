@@ -1,10 +1,8 @@
 import React from 'react'
-import DeleteIcon from '../../Icons/DeleteIcon'
+import DeleteIcon from '../../Icons/DeleteIcon';
 import Axios from 'axios';
 function ProItem(props) {
   const deleteHandler = () => {
-    console.log(props.id);
-
     Axios.delete(`http://localhost:3001/api/pros-cons/pro/${props.id}`)
       .then((res) => {
         console.log(res);
