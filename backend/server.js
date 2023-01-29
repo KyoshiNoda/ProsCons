@@ -72,6 +72,21 @@ app.put('/api/list/:id',(req,res) =>{
   })
 });
 
+app.delete('/api/list/:id',(req,res) =>{
+  const id = req.params.id;
+  let removeItem = "DELETE FROM `pros_cons` WHERE (`list_id` = '";
+  removeItem +=`${id}')`;
+  db.query(removeItem,(err,result) =>{
+    console.log(result);
+  })
+
+  let removeList = "DELETE FROM `Pros-Cons`.`pros_cons_list` WHERE (`list_id` = '";
+  removeList += `${id}');`;
+  db.query(removeList,(err,result) =>{
+    console.log(result);
+  })
+});
+
 app.get('/api/pros-cons/pro/:id',(req,res) =>{
   const id = req.params.id;
   let select = "SELECT * FROM `Pros-Cons`"; 

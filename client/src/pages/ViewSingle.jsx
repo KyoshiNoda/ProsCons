@@ -3,6 +3,7 @@ import Card from '../components/Card';
 import ConBox from '../components/ViewSingle/Cons/ConBox';
 import ProBox from '../components/ViewSingle/Pros/ProBox';
 import ViewTitleContainer from '../components/ViewSingle/ViewTitleContainer';
+import DeleteSingle from '../components/ViewSingle/DeleteSingle';
 function ViewSingle() {
   return (
     <Card>
@@ -12,6 +13,7 @@ function ViewSingle() {
           <ProBox />
           <ConBox />
         </div>
+        <DeleteSingle />
       </div>
     </Card>
   );
