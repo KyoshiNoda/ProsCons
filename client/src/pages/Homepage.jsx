@@ -1,6 +1,6 @@
 import React from "react";
-import CreateModal from "../components/CreateModal";
-import ViewModal from "../components/ViewModal";
+import CreateModal from "../components/Modals/CreateModal";
+import ViewModal from '../components/Modals/ViewModal';
 function Homepage() {
   return (
     <div className="flex flex-col justify-center bg-gradient-to-r from-cyan-500 to-blue-500">

@@ -77,7 +77,7 @@ app.delete('/api/list/:id',(req,res) =>{
   let removeItem = "DELETE FROM `pros_cons` WHERE (`list_id` = '";
   removeItem +=`${id}')`;
   db.query(removeItem,(err,result) =>{
-    console.log(result);
+    res.send(id);
   })
 
   let removeList = "DELETE FROM `Pros-Cons`.`pros_cons_list` WHERE (`list_id` = '";

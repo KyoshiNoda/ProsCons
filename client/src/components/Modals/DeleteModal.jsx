@@ -1,12 +1,28 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-const InfoModal = (props) => {
-  let [isOpen, setIsOpen] = useState(true);
+import {useState, Fragment } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+function DeleteModal(props) {
+  let [isOpen, setIsOpen] = useState(false)
+
   function closeModal() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
+  function openModal() {  
+    setIsOpen(true)
+    props.onClick();
+  }
+
   return (
     <>
+      <div className="inset-0 flex items-center justify-center">
+        <button
+          type="button"
+          onClick={openModal}
+          className="w-96 text-white bg-gradient-to-r from-red-600 to-orange-300 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2"
+        >
+          Delete
+        </button>
+      </div>
+
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -35,31 +51,18 @@ const InfoModal = (props) => {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-2xl leading-6 flex justify-center text-green-500 font-bold"
+                    className="flex justify-center text-lg font-medium leading-6 text-gray-900"
                   >
-                    {props.title}
+                    {props.name} was deleted!
                   </Dialog.Title>
-                  <div className=" m-4">
-                    <h1 className="font-bold text-blue-600">Currently missing: <br /></h1>
-                    <u className="text-red-600">Front end</u>
-                    <ul>
-                      <li>groups pages are not started</li>
-                    </ul>
-                    <u className="text-blue-600">Back end</u>
-                    <ul>
-                      <li>ExpressJS backend isn't started</li>
-                      <li>MongoDB database isn't started</li>
-                    </ul>
-                  </div>
-
-                  <div className="flex justify-center mt-4">
-                    <button
+                  <div className="mt-4 flex justify-center">
+                    <a
+                      href= '/'
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
                     >
-                      Got it, thanks!
-                    </button>
+                      Okay!
+                    </a>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -68,7 +71,7 @@ const InfoModal = (props) => {
         </Dialog>
       </Transition>
     </>
-  );
-};
+  )
+}
 
-export default InfoModal;
+export default DeleteModal;
