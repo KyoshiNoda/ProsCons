@@ -12,6 +12,7 @@ function CreateTitleContainer(props) {
     Axios.post(`http://localhost:3001/api/list/`, { name: name })
       .then((res) => {
         props.insertID(res.data.insertId);
+        props.sendName(name);
       })
       .catch((err) => {
         console.log(err);
