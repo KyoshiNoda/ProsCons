@@ -20,7 +20,7 @@ function RenderConList() {
   }, [])
 
   return (
-    <ul>
+    <ul className='flex flex-col gap-1'>
       {
         !isEmpty ?
           conList.map((data) => {

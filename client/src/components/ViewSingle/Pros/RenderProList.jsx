@@ -20,7 +20,7 @@ function RenderProList() {
   }, [])
 
   return (
-    <ul>
+    <ul className='flex flex-col gap-1'>
       {
         !isEmpty ?
           proList.map((data) => {

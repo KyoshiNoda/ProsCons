@@ -12,7 +12,7 @@ function ProItem(props) {
       })
   }
   return (
-    <div className='flex justify-center items-center gap-1'>
+    <div className='flex items-center gap-1'>
       <div>
         <li>- {props.text}</li>
       </div>

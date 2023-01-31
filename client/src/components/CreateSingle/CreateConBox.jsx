@@ -44,7 +44,7 @@ function CreateConBox(props) {
         isAdded ?
           <input
             type='text'
-            className='rounded'
+            className='block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-lg focus:ring-blue-500 focus:border-blue-500'
             placeholder={'insert item'}
             onChange={textHandler}
             onBlur={blurHandler}
@@ -53,7 +53,7 @@ function CreateConBox(props) {
           <button
             type="button"
             onClick={addHandler}
-            className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2"
+            className="w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2"
           >
             Add
           </button>
