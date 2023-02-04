@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const app = express();
 const bycrypt = require('bcrypt');
+const accountRoute = require('../src/routes/accountRoute');
 dotenv.config();
 
 app.use(cors());
@@ -22,12 +23,20 @@ app.listen(3001,() =>{
   console.log("listening on port 3001");
 });
 
-app.get('/api/accounts',(req,res) =>{
-  const select = "SELECT * FROM `Pros-Cons`.users;"
-  db.query(select,(err,result) =>{
-    res.send(result);
-  });
-});
+// app.get('/api/accounts',(req,res) =>{
+//   const select = "SELECT * FROM `Pros-Cons`.users;"
+//   db.query(select,(err,result) =>{
+//     res.send(result);
+//   });
+// });
+
+app.use('/api/accounts',accountRoute);
+
+
+
+
+
+
 app.post('/api/accounts', async (req,res) =>{
   const email = req.body.email;
   const salt = await bycrypt.genSalt();
