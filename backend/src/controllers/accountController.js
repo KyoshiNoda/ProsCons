@@ -1,7 +1,7 @@
 const User = require('../models/userModal');
 const db = require('../DB/mySQL');
 const bycrypt = require('bcrypt');
-let users = [];
+
 const getAllAccounts =  (req,res) =>{
   const select = "SELECT * FROM `Pros-Cons`.users;";
   db.query(select,(err,result) =>{
@@ -10,8 +10,7 @@ const getAllAccounts =  (req,res) =>{
     }
     else{
       res.status(200);
-      users = result;
-      res.send(users);
+      res.send(result);
     }
   });
 }

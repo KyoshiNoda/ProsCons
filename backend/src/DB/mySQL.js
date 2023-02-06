@@ -15,18 +15,3 @@ db.connect((err) =>{
 })
 
 module.exports = db;
-
-
-
-// const getAccounts = () =>{
-//   const select = "SELECT * FROM `Pros-Cons`.users;"
-//   const testResult = db.query(select,(err,result) =>{
-//     return result;
-//   });
-
-//   return testResult;
-// }
-
-// module.exports ={
-//   getAccounts
-// }
