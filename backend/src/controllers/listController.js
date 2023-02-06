@@ -1,5 +1,6 @@
 const List = require('../models/listModal');
 const db = require('../DB/mySQL');
+
 const getList = (req,res) =>{
   const select = "SELECT * FROM `Pros-Cons`.pros_cons_list;";
   db.query(select,(err,result) =>{
@@ -8,6 +9,7 @@ const getList = (req,res) =>{
     }
     else{
       res.status(200);
+      res.send(result);
     }
   });
 }
@@ -53,6 +55,7 @@ const updateListItem = (req,res) =>{
       res.send(`error on updating item ${id}`);
     }
     else{
+      res.status(200);
       res.send(result);
     }
   });
@@ -81,6 +84,7 @@ const deleteListItem = (req,res) =>{
       res.send(err);
     }
     else{
+      res.status(200);
       res.send(`deleted item!`)
     }
   })
