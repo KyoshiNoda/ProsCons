@@ -16,48 +16,6 @@ app.listen(3001,() =>{
 app.use('/api/accounts',accountRoute);
 app.use('/api/list',listRoute);
 
-app.get('/api/list/:id',(req,res) =>{
-  const id = req.params.id;
-  let select = "SELECT * FROM `Pros-Cons`";
-  select += ` .pros_cons_list WHERE list_id = ${id}`;
-  db.query(select,(err,result) =>{
-    result.length === 0 ? res.send(`item ${id} doesn't exist`) : res.send(result);
-  });
-});
-
-app.post('/api/list',(req,res) =>{
-  const name = req.body.name;
-  const user_id = 2;
-  const insert = "INSERT INTO pros_cons_list (name,user_id) VALUES (?,?);";
-  db.query(insert,[name,user_id],(err,result) =>{
-    res.send(result);
-  });
-});
-
-app.put('/api/list/:id',(req,res) =>{
-  let update = "UPDATE `Pros-Cons`.`pros_cons_list` SET `name` = ";
-  update += `'${req.body.title}' WHERE`;
-  update += " (`list_id` = ";
-  update += `'${req.params.id}');`;
-  db.query(update,(err,result) =>{
-   result.length === 0 ? res.send(`error on updating ${id}`) : res.send(result);
-  })
-});
-
-app.delete('/api/list/:id',(req,res) =>{
-  const id = req.params.id;
-  let removeItem = "DELETE FROM `pros_cons` WHERE (`list_id` = '";
-  removeItem +=`${id}')`;
-  db.query(removeItem,(err,result) =>{
-    res.send(id);
-  })
-
-  let removeList = "DELETE FROM `Pros-Cons`.`pros_cons_list` WHERE (`list_id` = '";
-  removeList += `${id}');`;
-  db.query(removeList,(err,result) =>{
-    console.log(result);
-  })
-});
 
 app.get('/api/pros-cons/pro/:id',(req,res) =>{
   const id = req.params.id;
