@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const accountRoute = require('../src/routes/accountRoute');
 const listRoute = require('../src/routes/listRoute');
+const proRoute = require('../src/routes/proRoute');
 
 app.use(cors());
 app.use(express.json());
@@ -15,7 +16,7 @@ app.listen(3001,() =>{
 
 app.use('/api/accounts',accountRoute);
 app.use('/api/list',listRoute);
-
+app.use('/api/pros-cons/pro',proRoute);
 
 app.get('/api/pros-cons/pro/:id',(req,res) =>{
   const id = req.params.id;
@@ -52,6 +53,9 @@ app.delete('/api/pros-cons/pro/:id',(req,res) =>{
     res.send(result);
   })
 });
+
+
+
 app.get('/api/pros-cons/con/:id',(req,res) =>{
   const id = req.params.id;
   let select = "SELECT * FROM `Pros-Cons`"; 

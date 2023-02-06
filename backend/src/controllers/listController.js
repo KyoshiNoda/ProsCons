@@ -8,7 +8,6 @@ const getList = (req,res) =>{
     }
     else{
       res.status(200);
-      res.send(result);
     }
   });
 }
