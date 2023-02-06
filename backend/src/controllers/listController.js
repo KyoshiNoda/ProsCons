@@ -12,7 +12,22 @@ const getList = (req,res) =>{
     }
   });
 }
+const getListByID = (req,res) =>{
+  const id = req.params.id;
+  let select = "SELECT * FROM `Pros-Cons`";
+  select += ` .pros_cons_list WHERE list_id = ${id}`;
+  db.query(select,(err,result) =>{
+    if(result.length === 0){
+      res.status(400).send(`Item ${id} doesn't exist`);
+    }
+    else{
+      res.status(200);
+      res.send(result);
+    }
+  });
+}
 
 module.exports = {
-  getList
+  getList,
+  getListByID
 }
