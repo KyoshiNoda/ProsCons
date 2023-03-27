@@ -1,5 +1,5 @@
-# Organize your decisions with Pros &amp; Cons!
-Welcome to our powerful decision-making tool! This full-stack application combines the best of ReactJS, ExpressJS, and mySQL to give users the ability to create and organize pros and cons in both group and list form.
+# Pros and Cons - A powerful decision-making tool
+This full-stack application combines the best of ReactJS, ExpressJS, and mySQL to give users the ability to create and organize pros and cons in both group and list form.
 
 Are you facing a difficult decision, such as choosing a school or career path? With our application, you can easily weigh the pros and cons of each option, all in one place. Our intuitive interface allows you to quickly create and modify lists of pros and cons, and organize them in a way that works best for you.
 
